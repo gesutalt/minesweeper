@@ -33,5 +33,16 @@
   </div>
 
   <script src="minesweeper.js"></script>
+<script>
+(function () {
+  var ua = navigator.userAgent.toLowerCase();
+  if (ua.indexOf("kakaotalk") !== -1) {
+    alert(
+      "⚠️ 카카오톡 내부 브라우저에서는 게임이 정상 동작하지 않습니다.\n\n" +
+      "오른쪽 상단 '⋯' 버튼을 눌러\n'브라우저로 열기'로 접속해주세요."
+    );
+  }
+})();
+</script>
 </body>
 </html>
