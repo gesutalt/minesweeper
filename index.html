@@ -2,17 +2,30 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>멀더요원의 지뢰찾기</title>
+
+  <!-- 모바일 최적화 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>🕵️‍♂️ 멀더요원의 지뢰찾기</h1>
-    <p class="subtitle">
-      진실은 그 안에 있다.<br />
-      하지만 지뢰도 그 안에 있다.
-    </p>
+    <p class="subtitle">진실은 그 안에 있다.<br>하지만 지뢰도 그 안에 있다.</p>
+
+    <!-- 난이도 선택 -->
+    <div class="level">
+      <button onclick="startGame('easy')">요원</button>
+      <button onclick="startGame('normal')">특수요원</button>
+      <button onclick="startGame('hard')">X-Files</button>
+    </div>
 
     <div id="game"></div>
 
