@@ -14,13 +14,10 @@ const isInApp =
  * 초기 화면 분기
  *************************************************/
 window.onload = function () {
-  if (isInApp) {
-    document.getElementById("blocker").style.display = "block";
-  } else {
-    document.getElementById("app").style.display = "block";
-    startGame("easy");
-  }
+  document.getElementById("app").style.display = "block";
+  startGame("easy");
 };
+
 
 /*************************************************
  * 브라우저로 열기
