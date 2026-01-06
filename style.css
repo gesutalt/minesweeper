@@ -1,70 +1,43 @@
 body {
-  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  text-align: center;
   background: #0f172a;
   color: #e5e7eb;
-  font-family: "Segoe UI", Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-}
-
-.container {
-  width: 100%;
-  max-width: 420px;
-  padding: 12px;
-  text-align: center;
 }
 
 h1 {
-  font-size: 22px;
-  margin: 10px 0;
+  margin-top: 20px;
 }
 
 .subtitle {
-  font-size: 13px;
+  font-size: 14px;
   color: #a5b4fc;
-}
-
-.level {
-  display: flex;
-  gap: 6px;
-  margin: 10px 0;
-}
-
-.level button {
-  flex: 1;
-  padding: 8px;
-  background: #334155;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
+  margin-bottom: 20px;
 }
 
 #game {
-  display: grid;
-  gap: 4px;
-  width: 100%;
-  margin: 12px 0;
+  display: inline-grid;
+  grid-template-columns: repeat(9, 32px);
+  gap: 3px;
+  margin: 20px 0;
 }
 
 .cell {
-  -webkit-touch-callout: none; /* iOS 길게누르기 메뉴 제거 */
-  -webkit-user-select: none;
-  user-select: none;
-  touch-action: manipulation;
-  aspect-ratio: 1 / 1;
+  width: 32px;
+  height: 32px;
   background: #475569;
-  border-radius: 6px;
-  font-size: 18px;
+  border: 1px solid #1e293b;
+  cursor: pointer;
+  line-height: 32px;
   font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   user-select: none;
+  color: #e5e7eb;
 }
 
 .cell.open {
   background: #e5e7eb;
   color: #111827;
+  cursor: default;
 }
 
 .cell.mine {
@@ -72,18 +45,15 @@ h1 {
   color: #fff;
 }
 
-.cell.flag {
-  background: #facc15;
-  color: #000;
-}
-
 button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 8px;
+  padding: 8px 16px;
   background: #4f46e5;
   border: none;
   color: #fff;
-  border-radius: 6px;
-  font-size: 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #4338ca;
 }

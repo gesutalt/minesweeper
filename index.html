@@ -3,52 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <title>멀더요원의 지뢰찾기</title>
-
-  <!-- 모바일 최적화 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0f172a">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
   <link rel="stylesheet" href="style.css" />
 </head>
+<body>
+  <h1>🕵️‍♂️ 멀더요원의 지뢰찾기</h1>
+  <p class="subtitle">
+    진실은 그 안에 있다.<br />
+    하지만 지뢰도 그 안에 있다.
+  </p>
 
-<body ontouchstart="">
+  <div id="game"></div>
 
-  <!-- 인앱 브라우저 차단 화면 -->
-  <div id="blocker" class="container" style="display:none">
-    <h1>⚠️ 브라우저 안내</h1>
-    <p class="subtitle">
-      현재 사용 중인 앱 내 브라우저에서는<br>
-      게임이 정상적으로 동작하지 않습니다.<br><br>
-      아래 버튼을 눌러<br>
-      사파리(Safari) 또는 크롬(Chrome)으로 열어주세요.
-    </p>
-
-    <button onclick="openExternal()">🌐 브라우저로 열기</button>
-  </div>
-
-  <!-- 정상 브라우저 게임 화면 -->
-  <div id="app" class="container" style="display:none">
-    <h1>🕵️‍♂️ 멀더요원의 지뢰찾기</h1>
-    <p class="subtitle">
-      진실은 그 안에 있다.<br>
-      하지만 지뢰도 그 안에 있다.
-    </p>
-
-    <div class="level">
-      <button onclick="startGame('easy')">요원</button>
-      <button onclick="startGame('normal')">특수요원</button>
-      <button onclick="startGame('hard')">X-Files</button>
-    </div>
-
-    <div id="game"></div>
-
-    <button onclick="init()">🔄 작전 재개</button>
-  </div>
+  <button onclick="init()">🔄 작전 재개</button>
 
   <script src="minesweeper.js"></script>
 </body>
