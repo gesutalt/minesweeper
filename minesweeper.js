@@ -62,12 +62,25 @@ function init() {
 
 function addTouchEvents(el, r, c) {
   let timer;
-  el.addEventListener("touchstart", () => {
+
+  el.addEventListener("touchstart", (e) => {
+    e.preventDefault();   // ⭐ 사파리 기본 동작 차단
     timer = setTimeout(() => toggleFlag(r, c), 500);
   });
-  el.addEventListener("touchend", () => clearTimeout(timer));
-  el.onclick = () => openCell(r, c);
+
+  el.addEventListener("touchend", () => {
+    clearTimeout(timer);
+  });
+
+  el.addEventListener("touchmove", () => {
+    clearTimeout(timer);
+  });
+
+  el.addEventListener("click", () => {
+    openCell(r, c);
+  });
 }
+
 
 function toggleFlag(r, c) {
   const cell = board[r][c];
