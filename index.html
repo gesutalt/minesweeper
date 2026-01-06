@@ -44,5 +44,29 @@
   }
 })();
 </script>
+<script>
+(function () {
+  var ua = navigator.userAgent.toLowerCase();
+
+  // 인앱 브라우저 계열 감지
+  var isInApp =
+    ua.includes("kakaotalk") ||
+    ua.includes("naver") ||
+    ua.includes("daum") ||
+    ua.includes("instagram") ||
+    ua.includes("fbav") ||
+    ua.includes("fb_iab");
+
+  if (isInApp) {
+    alert(
+      "⚠️ 현재 사용 중인 브라우저에서는\n" +
+      "게임이 정상적으로 동작하지 않습니다.\n\n" +
+      "사파리(Safari) 또는 크롬(Chrome)과 같은\n" +
+      "기본 브라우저로 다시 열어주세요."
+    );
+  }
+})();
+</script>
+
 </body>
 </html>
