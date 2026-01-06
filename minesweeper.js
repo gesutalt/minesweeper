@@ -2,6 +2,7 @@ let ROWS = 9, COLS = 9, MINES = 10;
 let board = [];
 let gameOver = false;
 let opened = 0;
+let longPressTriggered = false;
 
 function startGame(level) {
   if (level === "easy") { ROWS = COLS = 9; MINES = 10; }
@@ -64,8 +65,13 @@ function addTouchEvents(el, r, c) {
   let timer;
 
   el.addEventListener("touchstart", (e) => {
-    e.preventDefault();   // ⭐ 사파리 기본 동작 차단
-    timer = setTimeout(() => toggleFlag(r, c), 500);
+    e.preventDefault();
+    longPressTriggered = false;
+
+    timer = setTimeout(() => {
+      toggleFlag(r, c);
+      longPressTriggered = true;   // ⭐ 길게 누름 발생 표시
+    }, 500);
   });
 
   el.addEventListener("touchend", () => {
@@ -77,9 +83,11 @@ function addTouchEvents(el, r, c) {
   });
 
   el.addEventListener("click", () => {
+    if (longPressTriggered) return; // ⭐ 깃발 동작 후 클릭 무시
     openCell(r, c);
   });
 }
+
 
 
 function toggleFlag(r, c) {
