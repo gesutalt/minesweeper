@@ -15,12 +15,30 @@
 
   <link rel="stylesheet" href="style.css" />
 </head>
-<body ontouchstart="">
-  <div class="container">
-    <h1>🕵️‍♂️ 멀더요원의 지뢰찾기</h1>
-    <p class="subtitle">진실은 그 안에 있다.<br>하지만 지뢰도 그 안에 있다.</p>
 
-    <!-- 난이도 선택 -->
+<body ontouchstart="">
+
+  <!-- 인앱 브라우저 차단 화면 -->
+  <div id="blocker" class="container" style="display:none">
+    <h1>⚠️ 브라우저 안내</h1>
+    <p class="subtitle">
+      현재 사용 중인 앱 내 브라우저에서는<br>
+      게임이 정상적으로 동작하지 않습니다.<br><br>
+      아래 버튼을 눌러<br>
+      사파리(Safari) 또는 크롬(Chrome)으로 열어주세요.
+    </p>
+
+    <button onclick="openExternal()">🌐 브라우저로 열기</button>
+  </div>
+
+  <!-- 정상 브라우저 게임 화면 -->
+  <div id="app" class="container" style="display:none">
+    <h1>🕵️‍♂️ 멀더요원의 지뢰찾기</h1>
+    <p class="subtitle">
+      진실은 그 안에 있다.<br>
+      하지만 지뢰도 그 안에 있다.
+    </p>
+
     <div class="level">
       <button onclick="startGame('easy')">요원</button>
       <button onclick="startGame('normal')">특수요원</button>
@@ -33,40 +51,5 @@
   </div>
 
   <script src="minesweeper.js"></script>
-<script>
-(function () {
-  var ua = navigator.userAgent.toLowerCase();
-  if (ua.indexOf("kakaotalk") !== -1) {
-    alert(
-      "⚠️ 카카오톡 내부 브라우저에서는 게임이 정상 동작하지 않습니다.\n\n" +
-      "오른쪽 상단 '⋯' 버튼을 눌러\n'브라우저로 열기'로 접속해주세요."
-    );
-  }
-})();
-</script>
-<script>
-(function () {
-  var ua = navigator.userAgent.toLowerCase();
-
-  // 인앱 브라우저 계열 감지
-  var isInApp =
-    ua.includes("kakaotalk") ||
-    ua.includes("naver") ||
-    ua.includes("daum") ||
-    ua.includes("instagram") ||
-    ua.includes("fbav") ||
-    ua.includes("fb_iab");
-
-  if (isInApp) {
-    alert(
-      "⚠️ 현재 사용 중인 브라우저에서는\n" +
-      "게임이 정상적으로 동작하지 않습니다.\n\n" +
-      "사파리(Safari) 또는 크롬(Chrome)과 같은\n" +
-      "기본 브라우저로 다시 열어주세요."
-    );
-  }
-})();
-</script>
-
 </body>
 </html>

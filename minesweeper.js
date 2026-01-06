@@ -1,3 +1,46 @@
+/*************************************************
+ * 인앱 브라우저 차단 판별
+ *************************************************/
+const ua = navigator.userAgent.toLowerCase();
+const isInApp =
+  ua.includes("kakaotalk") ||
+  ua.includes("naver") ||
+  ua.includes("daum") ||
+  ua.includes("instagram") ||
+  ua.includes("fbav") ||
+  ua.includes("fb_iab");
+
+/*************************************************
+ * 초기 화면 분기
+ *************************************************/
+window.onload = function () {
+  if (isInApp) {
+    document.getElementById("blocker").style.display = "block";
+  } else {
+    document.getElementById("app").style.display = "block";
+    startGame("easy");
+  }
+};
+
+/*************************************************
+ * 브라우저로 열기
+ *************************************************/
+function openExternal() {
+  const url = location.href;
+
+  if (/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase())) {
+    alert("공유 버튼을 누른 후\n'사파리에서 열기'를 선택해주세요.");
+  } else {
+    location.href =
+      "intent://" +
+      url.replace(/^https?:\/\//, "") +
+      "#Intent;scheme=https;package=com.android.chrome;end";
+  }
+}
+
+/*************************************************
+ * 게임 로직
+ *************************************************/
 let ROWS = 9, COLS = 9, MINES = 10;
 let board = [];
 let gameOver = false;
@@ -15,6 +58,7 @@ function init() {
   gameOver = false;
   opened = 0;
   board = [];
+
   const game = document.getElementById("game");
   game.style.gridTemplateColumns = `repeat(${COLS}, 1fr)`;
   game.innerHTML = "";
@@ -42,8 +86,7 @@ function init() {
       let cnt = 0;
       for (let dr = -1; dr <= 1; dr++) {
         for (let dc = -1; dc <= 1; dc++) {
-          const nr = r + dr, nc = c + dc;
-          if (board[nr]?.[nc]?.mine) cnt++;
+          if (board[r + dr]?.[c + dc]?.mine) cnt++;
         }
       }
       board[r][c].count = cnt;
@@ -70,29 +113,23 @@ function addTouchEvents(el, r, c) {
 
     timer = setTimeout(() => {
       toggleFlag(r, c);
-      longPressTriggered = true;   // ⭐ 길게 누름 발생 표시
+      longPressTriggered = true;
     }, 500);
   });
 
-  el.addEventListener("touchend", () => {
-    clearTimeout(timer);
-  });
-
-  el.addEventListener("touchmove", () => {
-    clearTimeout(timer);
-  });
+  el.addEventListener("touchend", () => clearTimeout(timer));
+  el.addEventListener("touchmove", () => clearTimeout(timer));
 
   el.addEventListener("click", () => {
-    if (longPressTriggered) return; // ⭐ 깃발 동작 후 클릭 무시
+    if (longPressTriggered) return;
     openCell(r, c);
   });
 }
 
-
-
 function toggleFlag(r, c) {
   const cell = board[r][c];
   if (cell.open) return;
+
   cell.flag = !cell.flag;
   cell.el.classList.toggle("flag");
   cell.el.textContent = cell.flag ? "🚩" : "";
@@ -119,7 +156,7 @@ function openCell(r, c) {
   } else {
     for (let dr = -1; dr <= 1; dr++)
       for (let dc = -1; dc <= 1; dc++)
-        board[r+dr]?.[c+dc] && openCell(r+dr, c+dc);
+        board[r + dr]?.[c + dc] && openCell(r + dr, c + dc);
   }
 
   if (opened === ROWS * COLS - MINES) {
