@@ -47,6 +47,10 @@ h1 {
 }
 
 .cell {
+  -webkit-touch-callout: none; /* iOS 길게누르기 메뉴 제거 */
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
   aspect-ratio: 1 / 1;
   background: #475569;
   border-radius: 6px;
